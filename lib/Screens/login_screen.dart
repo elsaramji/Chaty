@@ -1,9 +1,7 @@
 // Screens/login_screen.dart
+import 'package:massage/Screens/contact_screen.dart';
 import 'package:massage/Screens/register_screen.dart';
-import 'package:massage/models/user_model.dart';
-
 import '../Screens/screen_box.dart';
-
 import '../widgets/logo_bulider.dart';
 import '../widgets/normal_filed.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +14,39 @@ import 'package:massage/logic/login_with_email.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
+  static const String routeName = "login";
   LoginScreen({super.key});
   String? _email;
   String? _password;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
+/// Builds a widget tree that represents the login screen.
+///
+/// The widget tree consists of a [ScreenBox] widget that contains a [Form]
+/// widget. The [Form] widget has a [ListView] as its child, which in turn
+/// contains various child widgets such as [Decortioninputer], [Logobuilder],
+/// [TextfiledNormal], [TextfiledPassword], [NavigetorAuth], and
+/// [CustomElevatedButton].
+///
+/// The [TextfiledNormal] and [TextfiledPassword] widgets have callback functions
+/// [onChanged] and [onValied] respectively. The [onChanged] function is called
+/// when the text in the widget changes, and the [onValied] function is called to
+/// validate the text.
+///
+/// The [NavigetorAuth] widget has a callback function [onTap] that is called
+/// when the widget is tapped. The [onTap] function pushes a new route to the
+/// [Navigator] with a [ResgisterScreen] widget.
+///
+/// The [CustomElevatedButton] widget has a callback function [onPressed] that
+/// is called when the button is pressed. The [onPressed] function calls the
+/// [loginWithEmail] function of the [LoginWithEmail] class, passing the
+/// [context], [formkey], [email], and [password] as arguments.
+///
+/// The [Navigator.popAndPushNamed] function is called to pop the current route
+/// from the [Navigator] stack and push a new route with the [ContactScreen.routeName].
+///
+/// Returns a [Widget] that represents the login screen.
   Widget build(BuildContext context) {
     return ScreenBox(
       content: Form(
@@ -62,6 +87,7 @@ class LoginScreen extends StatelessWidget {
               onPressed: () async {
                 await LoginWithEmail().loginWithEmail(context,
                     formkey: formkey, email: _email, password: _password);
+                Navigator.popAndPushNamed(context, ContactScreen.routeName);
               },
             ),
           ],

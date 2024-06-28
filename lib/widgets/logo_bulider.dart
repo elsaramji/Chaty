@@ -8,6 +8,7 @@ class Logobuilder extends StatelessWidget {
   });
 
   @override
+  // Builds the widget with the Image widget displaying an asset image.
   Widget build(BuildContext context) {
     return Image.asset(
       "assets/images/massage.png",

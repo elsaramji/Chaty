@@ -15,15 +15,21 @@ class Sizer {
    */
 
 // screen size
+  // Calculates the percentage of the screen size based on the given percentage.
+  //
+  // The [context] parameter is used to access the [MediaQuery] data for the screen size.
   static Size screenSizer(BuildContext context) {
     return MediaQuery.of(context).size;
   }
 
-  static double percentSizer(
-      {required BuildContext context, required double percent}) {
-    return double.parse(screenSizer(context) as String) * (percent / 100);
-  }
+  
 
+  /// Returns the width of the screen in logical pixels.
+  ///
+  /// The [context] parameter is used to access the [MediaQuery] data for the
+  /// screen size.
+  ///
+  /// Returns a [double] representing the width of the screen.
   static double screenWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
   }

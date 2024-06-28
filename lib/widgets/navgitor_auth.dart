@@ -15,6 +15,8 @@ class NavigetorAuth extends StatelessWidget {
   });
 
   @override
+  // Builds a row widget with a text widget displaying the question styled with a font size of 12, black color, and italic font style. 
+  // Additionally, a GestureDetector widget is included with a text widget displaying the answer styled with a font size of 12 and a custom color.
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

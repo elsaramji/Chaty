@@ -1,8 +1,6 @@
 // widgets/decortion_init.dart
-import 'package:flutter/material.dart';import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:massage/logic/constans.dart';
-// widgets/decortion_init.dart
-// widgets/decortion_init.dart
 
 // widgets/decortion_init.dart
 
@@ -33,5 +31,3 @@ class Decortioninputer {
     height: 12.5,
   );
 }
-
-

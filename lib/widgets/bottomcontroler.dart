@@ -1,20 +1,29 @@
 // widgets/bottomcontroler.dart
+
 import 'package:flutter/material.dart';
 import 'package:massage/logic/constans.dart';
 import 'package:massage/logic/screen_Size_contorl.dart';
 
 class BottomControler extends StatelessWidget {
-  const BottomControler({super.key});
+  final VoidCallback? onPressed;
+  const BottomControler({super.key, required this.onPressed});
 
   @override
 
-  /// Builds the bottom app bar for the application.
+  /// Builds the widget tree for the bottom app bar.
   ///
-  /// The bottom app bar contains two IconButton widgets:
-  /// - The first button navigates to the [SelecetStateViwe] screen when pressed.
-  /// - The second button navigates to the [Addingcityview] screen when pressed.
+  /// The [context] parameter is the build context for the widget.
   ///
-  /// The bottom app bar has a height of 60, an elevation of 1, a shadow color of [0xff202B3B], and a background color of [0xff0B131E].
+  /// Returns a [BottomAppBar] widget that represents the bottom app bar.
+  /// The height of the bottom app bar is calculated using the [Sizer.percentHeight] method,
+  /// with the provided [context] and a percentage of 10. The elevation is set to 1.
+  /// The color of the bottom app bar is set to [kColorbackgroundbutton].
+  /// The child of the bottom app bar is a [Row] widget with [MainAxisAlignment.spaceAround] alignment.
+  /// The row contains two [IconButton] widgets.
+  /// The first icon button displays an [Icon] with the [Icons.add] icon and a tooltip of 'new chat'.
+  /// The onPressed callback for the first icon button is set to the provided [onPressed] callback.
+  /// The second icon button displays an [Icon] with the [Icons.logout_outlined] icon and a tooltip of 'logout'.
+  /// The onPressed callback for the second icon button is an empty function.
   Widget build(BuildContext context) {
     return BottomAppBar(
         height: Sizer.percentHeight(context: context, percent: 10),
@@ -24,7 +33,7 @@ class BottomControler extends StatelessWidget {
           IconButton(
               icon: const Icon(color: kColorbackgroundLight, Icons.add),
               tooltip: 'new chat',
-              onPressed: () {}),
+              onPressed: onPressed),
           IconButton(
               icon: const Icon(
                 Icons.logout_outlined,

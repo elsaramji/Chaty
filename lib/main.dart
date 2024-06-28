@@ -1,15 +1,13 @@
 // main.dart
 import 'package:massage/Screens/chat_screen.dart';
-import 'package:massage/Screens/massage_screen.dart';
+import 'package:massage/Screens/contact_screen.dart';
 import 'package:massage/logic/constans.dart';
-
 import '../Screens/login_screen.dart';
-import '../Screens/login_screen.dart';
+import '../Screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:massage/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-// main.dart
 // main.dart
 
 void main() async {
@@ -17,7 +15,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -27,27 +27,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Massage',
-      theme: ThemeData(
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(
-                kColorbackgroundbutton,
-              ),
-              shape: WidgetStateProperty.all(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        debugShowCheckedModeBanner: false,
+        title: 'Massage',
+        theme: ThemeData(
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(
+                  kColorbackgroundbutton,
+                ),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
               ),
             ),
-          ),
-          textTheme: const TextTheme(
-              titleMedium: TextStyle(fontSize: 18, color: Colors.black),
-              titleSmall: TextStyle(fontSize: 14, color: Colors.black),
-              headlineSmall: TextStyle(
-                  color: kColorTextButton,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold))),
-      home: LoginScreen(),
-    );
+            textTheme: const TextTheme(
+                titleMedium: TextStyle(fontSize: 18, color: Colors.black),
+                titleSmall: TextStyle(fontSize: 14, color: Colors.black),
+                headlineSmall: TextStyle(
+                    color: kColorTextButton,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold))),
+        home: LoginScreen(),
+        routes: {
+          LoginScreen.routeName: (context) => LoginScreen(),
+          ResgisterScreen.routeName: (context) => ResgisterScreen(),
+          ContactScreen.routeName: (context) => ContactScreen(),
+          ChatScreen.routeName: (context) => ChatScreen(),
+        });
   }
 }
