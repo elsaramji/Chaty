@@ -1,8 +1,12 @@
 // widgets/bottomcontroler.dart
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:massage/Screens/login_screen.dart';
 import 'package:massage/logic/constans.dart';
+import 'package:massage/logic/login_out.dart';
 import 'package:massage/logic/screen_Size_contorl.dart';
+import 'package:massage/widgets/snack_bar.dart';
 
 class BottomControler extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -40,7 +44,9 @@ class BottomControler extends StatelessWidget {
                 color: kColorbackgroundLight,
               ),
               tooltip: 'logout',
-              onPressed: () {})
+              onPressed: () async {
+                await LoginOut.loginOut(context);
+              })
         ]));
   }
 }

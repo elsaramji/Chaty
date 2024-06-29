@@ -10,13 +10,16 @@ class MassageBuilder extends StatelessWidget {
     required this.currentUser,
     required this.rout,
     required this.snapshot,
+    required this.scrollController,
   });
 
   final String? currentUser;
   final Map<String, dynamic> rout;
   final AsyncSnapshot<QuerySnapshot> snapshot;
+  final ScrollController scrollController;
 
   @override
+
   /// Builds a ListView widget based on the snapshot data.
   ///
   /// The ListView widget displays a list of chat bubbles based on the data in the
@@ -32,6 +35,8 @@ class MassageBuilder extends StatelessWidget {
   /// Returns a [ListView] widget.
   Widget build(BuildContext context) {
     return ListView.builder(
+        reverse: true,
+        controller: scrollController,
         itemCount: snapshot.data!.docs.length,
         itemBuilder: (context, index) {
           if (snapshot.data!.docs[index][users_id].first == currentUser &&

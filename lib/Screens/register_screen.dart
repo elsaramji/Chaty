@@ -1,5 +1,7 @@
 // Screens/register_screen.dart
 
+import 'package:massage/Screens/login_screen.dart';
+
 import '../Screens/screen_box.dart';
 import 'package:flutter/widgets.dart';
 import '../widgets/logo_bulider.dart';
@@ -86,12 +88,19 @@ class ResgisterScreen extends StatelessWidget {
             Decortioninputer.space25,
             CustomElevatedButton(
               onPressed: () async {
-                await RegisterWithEmail(
-                        email: _email,
-                        password: _password,
-                        formkey: formkey,
-                        name: _name)
-                    .regesterWithEmail(context);
+                if (formkey.currentState!.validate() &&
+                    _email != null &&
+                    _password != null &&
+                    _name != null) {
+                  await RegisterWithEmail(
+                          email: _email,
+                          password: _password,
+                          formkey: formkey,
+                          name: _name)
+                      .regesterWithEmail(context);
+
+                  Navigator.of(context).popAndPushNamed(LoginScreen.routeName);
+                }
               },
               title: "singup",
             ),

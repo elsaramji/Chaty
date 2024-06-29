@@ -9,8 +9,9 @@ class Sendmassage {
     required String massagecontent,
     required String currentUser,
     required CollectionReference massage,
-  }) {
-    massage.add({
+  }) 
+  async{
+    await massage.add({
       massage_id: massagecontent,
       sender_id: currentUser,
       sendto_id: rout[touser_navigetor_id],

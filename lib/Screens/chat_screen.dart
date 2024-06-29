@@ -18,11 +18,12 @@ class ChatScreen extends StatelessWidget {
       FirebaseFirestore.instance.collection(massage_collection);
   String massagecontent = "";
   final TextEditingController massagecontant = TextEditingController();
+  final ScrollController scrollController = ScrollController();
 
   @override
-  // Builds the chat screen widget with the input context. 
+  // Builds the chat screen widget with the input context.
   // Retrieves route arguments from the context, sets up the screen layout with a StreamBuilder for real-time updates,
-  // and includes a text field for sending massages. 
+  // and includes a text field for sending massages.
   Widget build(BuildContext context) {
     Map<String, dynamic> rout =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
@@ -31,13 +32,14 @@ class ChatScreen extends StatelessWidget {
       children: [
         Expanded(
           child: StreamBuilder(
-            stream: massage.orderBy(time_id).snapshots(),
+            stream: massage.orderBy(time_id, descending: true).snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return MassageBuilder(
                   currentUser: currentUser,
                   rout: rout,
                   snapshot: snapshot,
+                  scrollController: scrollController,
                 );
               }
               return const Center(
@@ -59,6 +61,11 @@ class ChatScreen extends StatelessWidget {
                     massage: massage);
                 // delete massage after send
                 massagecontant.clear();
+                scrollController.animateTo(
+                  0,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.fastOutSlowIn,
+                );
               }),
           onChanged: (s) {
             massagecontent = s;
