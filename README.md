@@ -1,4 +1,4 @@
-# Simple Chat App
+# Simple Chatoo App
 
 ## Overview
 
